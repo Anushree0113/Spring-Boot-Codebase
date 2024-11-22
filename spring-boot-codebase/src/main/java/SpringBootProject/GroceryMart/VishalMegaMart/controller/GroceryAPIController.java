@@ -1,6 +1,6 @@
 package SpringBootProject.GroceryMart.VishalMegaMart.controller;
 
-import SpringBootProject.GroceryMart.VishalMegaMart.GroceryUtility;
+import SpringBootProject.GroceryMart.VishalMegaMart.Utility.GroceryUtility;
 import SpringBootProject.GroceryMart.VishalMegaMart.service.GroceryServiceUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
