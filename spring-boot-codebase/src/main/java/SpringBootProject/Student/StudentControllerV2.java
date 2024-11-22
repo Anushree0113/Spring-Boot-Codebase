@@ -1,6 +1,8 @@
 package SpringBootProject.Student;
 
 import SpringBootProject.Student.service.StudentEntryService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -16,14 +18,25 @@ public class StudentControllerV2 {
     }
 
     @PostMapping("/create-entry")
-    public boolean createStudentEntry(@RequestBody StudentPOJO student) {
-        studentEntryService.saveStudentEntry(student);
-        return true;
+    public ResponseEntity<StudentPOJO> createStudentEntry(@RequestBody StudentPOJO student) {
+        try {
+            studentEntryService.saveStudentEntry(student);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
     }
 
     @GetMapping("/get-entry/{myId}")
-    public Optional<StudentPOJO> getStudentEntryById(@PathVariable int myId) {
-        return studentEntryService.getStudentEntryById(myId);
+    public ResponseEntity<StudentPOJO> getStudentEntryById(@PathVariable int myId) {
+        Optional<StudentPOJO> studentEntryById = studentEntryService.getStudentEntryById(myId);
+        if (studentEntryById.isPresent()) {
+            return new ResponseEntity<>(studentEntryById.get(), HttpStatus.OK);
+        }
+
+
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @PutMapping("/update-entry/{myId}")
