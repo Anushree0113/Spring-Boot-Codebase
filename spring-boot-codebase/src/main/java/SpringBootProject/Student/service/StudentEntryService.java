@@ -13,7 +13,6 @@ import java.util.Optional;
 public class StudentEntryService {
 
     Logger Klogger = LoggerFactory.getLogger(StudentEntryService.class);
-
     private final StudentEntryRepo studentEntryRepo;
 
     public StudentEntryService(StudentEntryRepo studentEntryRepo) {
