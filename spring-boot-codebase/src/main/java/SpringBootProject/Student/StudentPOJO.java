@@ -1,5 +1,9 @@
 package SpringBootProject.Student;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "student-entries")
 public class StudentPOJO {
     public int getId() {
         return id;
@@ -33,6 +37,7 @@ public class StudentPOJO {
         this.email = email;
     }
 
+    @Id
     private int id;
     private String name;
     private String address;
