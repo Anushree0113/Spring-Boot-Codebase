@@ -31,12 +31,9 @@ public class StudentControllerV2 {
     @GetMapping("/get-entry/{myId}")
     public ResponseEntity<StudentPOJO> getStudentEntryById(@PathVariable int myId) {
         Optional<StudentPOJO> studentEntryById = studentEntryService.getStudentEntryById(myId);
-        if (studentEntryById.isPresent()) {
-            return new ResponseEntity<>(studentEntryById.get(), HttpStatus.OK);
-        }
+        return studentEntryById.map(studentPOJO -> new ResponseEntity<>(studentPOJO, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
 
 
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @PutMapping("/update-entry/{myId}")
