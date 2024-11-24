@@ -19,10 +19,13 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .requestMatchers("/users").permitAll()  // Public access to '/users'
+                .requestMatchers("/users/**").permitAll()  // Public access to '/users'
                 .anyRequest().authenticated()  // All other requests require authentication
                 .and()
-                .formLogin();  // Form-based login
+                .formLogin()
+                .usernameParameter("user")  // Specify the name of the username field
+                .passwordParameter("password")  // Specify the name of the password field
+                .permitAll();  // Allow access to the login page
         return http.build();
     }
 
@@ -30,7 +33,6 @@ public class SecurityConfiguration {
     public PlatformTransactionManager transactionManager(MongoDatabaseFactory databaseFactory) {
         return new MongoTransactionManager(databaseFactory);
     }
-
 
 
 }
