@@ -19,9 +19,6 @@ public class UserWebService {
     UserRepo userRepo;
 
     @Autowired
-    DatabaseWebService databaseWebService;
-
-    @Autowired
     DatabaseRepo databaseRepo;
 
 
