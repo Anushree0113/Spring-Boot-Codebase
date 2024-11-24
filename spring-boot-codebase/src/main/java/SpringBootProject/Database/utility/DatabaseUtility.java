@@ -28,7 +28,6 @@ public class DatabaseUtility {
     @Indexed(unique = true)
     private String db_username;
 
-    @Encrypted
     private String db_password;
     @DBRef
     private List<UserUtility> users = new ArrayList<>();
