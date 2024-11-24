@@ -1,7 +1,6 @@
 package SpringBootProject.User.service;
 
 import SpringBootProject.Database.repository.DatabaseRepo;
-import SpringBootProject.Database.service.DatabaseWebService;
 import SpringBootProject.Database.utility.DatabaseUtility;
 import SpringBootProject.User.repository.UserRepo;
 import SpringBootProject.User.utility.UserUtility;
@@ -9,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -26,6 +26,7 @@ public class UserWebService {
         return userRepo.findAll();
     }
 
+    @Transactional
     public ResponseEntity<?> createUser(UserUtility user, String db_name) {
 
         UserUtility newUser = userRepo.save(user);
