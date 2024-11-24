@@ -4,12 +4,15 @@ import SpringBootProject.Database.repository.DatabaseRepo;
 import SpringBootProject.Database.utility.DatabaseUtility;
 import SpringBootProject.User.repository.UserRepo;
 import SpringBootProject.User.utility.UserUtility;
+import SpringBootProject.configuration.SecurityConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.beans.Encoder;
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,7 +31,6 @@ public class UserWebService {
 
     @Transactional
     public ResponseEntity<?> createUser(UserUtility user, String db_name) {
-
         UserUtility newUser = userRepo.save(user);
 
         Optional<DatabaseUtility> databaseDoc = databaseRepo.findById(db_name);
