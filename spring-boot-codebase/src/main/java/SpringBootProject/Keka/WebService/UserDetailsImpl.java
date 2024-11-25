@@ -19,7 +19,7 @@ public class UserDetailsImpl implements UserDetailsService {
     HRWebService webService;
 
     @Autowired
-    private static  final Log Klogger  = LogFactory.getLog(UserDetailsImpl.class);
+    private static final Log Klogger = LogFactory.getLog(UserDetailsImpl.class);
 
     /**
      * @param username
